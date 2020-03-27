@@ -13,4 +13,14 @@ public class AccountManager {
 		}
 		return null;
 	}
+	public static void transferMoney(Account from,Account to,double amount){
+		try{
+			from.withdraw(amount);
+			to.deposit(amount);
+		} catch(LowBalanceException lx) {
+			System.out.println("You do not have sufficient balance to transfer.");
+			lx.printStackTrace();
+		}
+		
+	}
 }

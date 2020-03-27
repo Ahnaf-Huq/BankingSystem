@@ -1,20 +1,23 @@
 package edu.aiub.bank.model;
 
-public class Account {
+import edu.aiub.bank.util.LowBalanceException;
+
+public class Account implements AccountInterface {
 	String accountHoldersName;
 	String accountNumber;
 	double balance;
 	static double interestRate; // if 4% interest rate, it is 0.04
-	public final static int SAVINGS_ACCOUNT = 0;
-	public final static int CURRENT_ACCOUNT = 1;
+	
 	int typeOfAccount =-1;
 	
-	void deposit(double amount) {
+	public void deposit(double amount) {
 		balance =  balance+amount;
 	}
-	void withdraw(double amount) {
+	public void withdraw(double amount) throws LowBalanceException {
 		if(balance-amount >= 0) {
 			balance = balance-amount;
+		} else {
+			throw new LowBalanceException();
 		}
 	} 
 	Account(){
