@@ -10,15 +10,7 @@ import edu.aiub.bank.util.*;
 
 public class BankMain {
 
-	public static Account search (List<Account> accounts, String accNo) {
-		for(Account a: accounts) {
-			if(accNo.equals(a.getAccountNumber())) {
-				//System.out.println("Account found.");
-				return a;
-			}
-		} 
-		return null;
-	}
+	
 	
 	public static void main(String[] args) {
 		
@@ -32,15 +24,14 @@ public class BankMain {
 //		accounts[1] = b;
 //		accounts[2] = AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT);
 //		accounts[3] = AccountManager.createAccount("S2","1",800,Account.SAVINGS_ACCOUNT);
-		ArrayList<Account> accounts = new ArrayList<Account>();
-		accounts.add(a);
-		accounts.add(b);
-		accounts.add(AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT));
-		accounts.add(AccountManager.createAccount("S2","1",800,Account.SAVINGS_ACCOUNT));
-		System.out.println("Total number of Accounts: "+accounts.size());
+		AccountManager am = new AccountManager();
+		am.add(a);
+		am.add(b);
+		am.add(AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT));
+		am.add(AccountManager.createAccount("S2","1",800,Account.SAVINGS_ACCOUNT));
+		System.out.println("Total number of Accounts: "+am.size());
 
-
-		for (Account obj : accounts) { 
+		for (Account obj : am.getAccounts()) { 
 			//Account obj = (Account) o;
 			System.out.println(obj);
 			if (obj instanceof SavingsAccount) {
@@ -63,7 +54,7 @@ public class BankMain {
 		System.out.println(a);
 		System.out.println(b);
 		
-		Account found = search(accounts,"11223");
+		Account found = am.search("11223");
 		if (found == null) {
 			System.out.println("Account not found.");
 		} else {

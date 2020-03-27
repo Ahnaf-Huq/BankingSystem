@@ -1,8 +1,38 @@
 package edu.aiub.bank.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.aiub.bank.model.*;
 
 public class AccountManager {
+	private ArrayList<Account> accounts = new ArrayList<Account>();
+	
+	public AccountManager() {
+		
+	}
+	
+	public void add(Account ac) {
+		accounts.add(ac);
+	}
+	public int size() {
+		return accounts.size();
+	}
+	
+	public ArrayList<Account> getAccounts() {
+		return accounts;
+	}
+	
+	public Account search (String accNo) {
+		for(Account a: accounts) {
+			if(accNo.equals(a.getAccountNumber())) {
+				//System.out.println("Account found.");
+				return a;
+			}
+		} 
+		return null;
+	}
+	
 	public static Account createAccount(String name,String accNo,double balance,int type) {
 		if (type == Account.SAVINGS_ACCOUNT) {
 			Account a = new SavingsAccount(name,accNo,balance);
