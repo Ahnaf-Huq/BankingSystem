@@ -7,13 +7,27 @@ import edu.aiub.bank.model.Account;
 import edu.aiub.bank.model.CurrentAccount;
 import edu.aiub.bank.model.SavingsAccount;
 import edu.aiub.bank.util.*;
+import edu.aiub.gui.FrameStudentInfo;
 
 public class BankMain {
+	
+	static AccountManager am;
 
 	
 	
 	public static void main(String[] args) {
 		
+		initAccounts();
+		FrameStudentInfo Fi = new FrameStudentInfo(am);
+		Fi.setVisible(true);
+		Fi.am = am;
+		
+		
+		
+		
+	}
+
+	private static void initAccounts() {
 		Account.setInterestRate(0.04);
 		Account a = AccountManager.createAccount("S1","112233",500,Account.SAVINGS_ACCOUNT);
 		Account b = AccountManager.createAccount("C1","224466",900,Account.CURRENT_ACCOUNT);
@@ -24,7 +38,7 @@ public class BankMain {
 //		accounts[1] = b;
 //		accounts[2] = AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT);
 //		accounts[3] = AccountManager.createAccount("S2","1",800,Account.SAVINGS_ACCOUNT);
-		AccountManager am = new AccountManager();
+		am = new AccountManager();
 		am.add(a);
 		am.add(b);
 		am.add(AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT));
@@ -60,12 +74,6 @@ public class BankMain {
 		} else {
 			System.out.println("Account found."+ found);
 		}
-		
-		
-		
-		
-		
-		
 	}
 
 }
