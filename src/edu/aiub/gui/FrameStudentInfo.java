@@ -24,10 +24,34 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 	private JTextField tfName;
 	private JTextField tfAmount;
 	private JTextField tfAccountNumber;
+	
+	public FrameStudentInfo() {
+		initGUI();
+		this.am = AccountManager.getInstance();
+		this.accounts =am.getAccounts();
+		updateAccountInfo(currentIndex);
+		
+	}
+	
 	public FrameStudentInfo(AccountManager am) {
 		super("Banking Systems"); 
 		this.am = am;
 		accounts = am.getAccounts();
+		initGUI();
+//		centerPanel.add(new JLabel("Amount to withdraw:"));
+//		JTextField tf4 = new JTextField(40);
+//		centerPanel.add(tf4);
+//		add(centerPanel, BorderLayout.CENTER);
+//		
+//		centerPanel.add(new JLabel("Amount to deposit:"));
+//		JTextField tf5 = new JTextField(40);
+//		centerPanel.add(tf5);
+//		add(centerPanel, BorderLayout.CENTER);
+		updateAccountInfo(currentIndex);
+		
+	}
+	
+	void initGUI() {
 		setSize(500,400);
 		//setVisible(true);
 		
@@ -45,8 +69,8 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 		centerPanel.add(new JLabel("Name:"));
 		tfName = new JTextField(40);
 		//tf.setText("Tahmid");
-		centerPanel.add(tfName);		
-		
+		centerPanel.add(tfName);	
+
 		centerPanel.add(new JLabel("Account Number:"));
 		tfAccountNumber = new JTextField(40);
 		centerPanel.add(tfAccountNumber);
@@ -60,19 +84,6 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 		tfAmount = new JTextField(40);
 		centerPanel.add(tfAmount);
 		add(centerPanel, BorderLayout.CENTER);
-		
-//		centerPanel.add(new JLabel("Amount to withdraw:"));
-//		JTextField tf4 = new JTextField(40);
-//		centerPanel.add(tf4);
-//		add(centerPanel, BorderLayout.CENTER);
-//		
-//		centerPanel.add(new JLabel("Amount to deposit:"));
-//		JTextField tf5 = new JTextField(40);
-//		centerPanel.add(tf5);
-//		add(centerPanel, BorderLayout.CENTER);
-		
-		
-		
 		JPanel bottomPanel = new JPanel();	
 		JButton bt = new JButton("<< Previous");
 		bt.addActionListener(this);
@@ -92,8 +103,6 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 		revalidate();
 //		repaint();
 		addWindowListener(new MyWindowManager());
-	
-		updateAccountInfo(currentIndex);
 	}
 
 	void process() {
@@ -105,6 +114,8 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 			System.out.println("Exiting");
 			System.exit(0);
 		}
+		
+		
 		
 	}
 	private void updateAccountInfo(int index) {

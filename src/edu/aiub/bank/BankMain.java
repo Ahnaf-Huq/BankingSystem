@@ -18,9 +18,10 @@ public class BankMain {
 	public static void main(String[] args) {
 		
 		initAccounts();
-		FrameStudentInfo Fi = new FrameStudentInfo(am);
+		//FrameStudentInfo Fi = new FrameStudentInfo(am);
+		FrameStudentInfo Fi = new FrameStudentInfo();
 		Fi.setVisible(true);
-		Fi.am = am;
+		
 		
 		
 		
