@@ -108,6 +108,9 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 		
 	}
 	private void updateAccountInfo(int index) {
+		if (index<0 || index>=accounts.size()) {
+			return;
+		}
 		Account ac = accounts.get(index);
 		tfName.setText(ac.getAccountHoldersName());
 		tfAccountNumber.setText(ac.getAccountNumber());
@@ -118,11 +121,15 @@ public class FrameStudentInfo extends JFrame implements ActionListener{
 		System.out.println("Click registered");
 		if (e.getActionCommand().equals("Next >> ")) {
 			System.out.println("Next Clicked");
-			updateAccountInfo(currentIndex++);
+			if (currentIndex<accounts.size()-1) {
+			updateAccountInfo(++currentIndex);
+			}
 		}
 		if (e.getActionCommand().equals("<< Previous")) {
 			System.out.println("Previous Clicked");
-			updateAccountInfo(currentIndex--);
+			if (currentIndex>0) {
+			updateAccountInfo(--currentIndex);
+			}
 		}
 		if (e.getActionCommand().equals("Save")) {
 			System.out.println("Save");
