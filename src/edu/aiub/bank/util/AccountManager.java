@@ -6,10 +6,19 @@ import java.util.List;
 import edu.aiub.bank.model.*;
 
 public class AccountManager {
+	
+	private static AccountManager instance;
+	
 	private ArrayList<Account> accounts = new ArrayList<Account>();
 	
-	public AccountManager() {
+	private AccountManager() {}
+	
+	public static AccountManager getInstance() {
+		if (instance == null) {
+			instance = new AccountManager();
+		}
 		
+		return instance;
 	}
 	
 	public void add(Account ac) {

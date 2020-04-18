@@ -38,7 +38,7 @@ public class BankMain {
 //		accounts[1] = b;
 //		accounts[2] = AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT);
 //		accounts[3] = AccountManager.createAccount("S2","1",800,Account.SAVINGS_ACCOUNT);
-		am = new AccountManager();
+		am = AccountManager.getInstance();
 		am.add(a);
 		am.add(b);
 		am.add(AccountManager.createAccount("C2","224466",700,Account.CURRENT_ACCOUNT));
